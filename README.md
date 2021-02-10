@@ -11,7 +11,7 @@ npm run restart
 
 ## raspberry pi deployment
 Join home network on pi with a static IP
-Clone repository to pi
+Clone repository to pi (you will need got/node/npm)
 npm install
 npm run restart
     If this fails due to architecture differences, run npm rebuild --force, then retry
