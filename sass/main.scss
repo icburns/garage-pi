@@ -1,35 +1,58 @@
 body {
-  background-color: darkslateblue;
-  color: white;
-  font-family: Helvetica;
+  background-color: darkcyan;
+  text-transform: uppercase;
+  color: ghostwhite;
+  font-family: Helvetica, Tahoma, sans-serif;
 }
 
 .garage {
-  padding: 1em;
+  padding: .5em;
+  display: flex;
+  justify-content: center;
 
-  .state {
-    span {
-      text-transform: uppercase;
-      font-size: 1em;
-    }
+  .garageContainers {
+    display: inline-flex;
+    flex-wrap: wrap;
+    text-align: center;
 
-    p {
+    .doorInfo {
       font-size: 1.5em;
-      margin: 0.5em 0;
     }
+
+    .state {
+      p {
+        font-size: 1em;
+        margin: 0.5em 0;
+      }
+    }
+  
+    .garageContainer {
+      padding: .5em;
+      margin: auto;
+      box-shadow: 1px 1px lightseagreen, -1px -1px lightseagreen, 1px -1px lightseagreen, -1px 1px lightseagreen;
+      border: 1px solid lightseagreen;
+      background-color: rgba(255, 255, 255, .05);
+    }
+  
+    button {
+      &:hover, &:active {
+        background-color: darksalmon;
+      }
+
+      color: ghostwhite;
+      background-color: darkslategray;
+      padding: .75em;
+      display: block;
+      font-size: 2em;
+      border: 2px solid ghostwhite;
+      border-radius: .75em;
+      width: 100%;
+      font-family: Helvetica;
+      margin-top: .5em;
+      cursor: pointer;
+      outline: none;
+    }
+  
   }
 
-  button {
-    color: white;
-    background-color: darksalmon;
-    padding: 2em;
-    display: block;
-    font-size: 2em;
-    border: 1px solid white;
-    border-radius: 2em;
-    width: 100%;
-    font-family: Helvetica;
-    margin-top: 2em;
-    cursor: pointer;
-  }
 }
