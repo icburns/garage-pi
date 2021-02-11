@@ -1,10 +1,10 @@
 import React = require('react')
 
 const GarageLightButton = (props) => {
-  let { sendLight, buttonText } = props;
+  let { sendLight, buttonText, status } = props;
 
   return (
-    <button onClick={() => sendLight()}>{buttonText}</button>
+    <button className={status ? "statusOn" : ""} onClick={() => sendLight()}>{buttonText}</button>
   )
 };
 

@@ -34,16 +34,39 @@ body {
       background-color: rgba(255, 255, 255, .05);
     }
   
+    
+   
     button {
-      &:hover, &:active {
-        background-color: darksalmon;
+      @keyframes pending {
+        from {
+          background-color: palevioletred;
+        }
+        to {
+          background-color: darkslategray;
+        }        
+      }
+
+      &:active {
+        background-color: lightsteelblue;
+        transition: none;
+      }
+
+      &.statusOn {
+        background-color: palevioletred;
+      }
+
+      &.statusPending {
+        animation-name: pending;
+        animation-direction: alternate;
+        animation-duration: 500ms;
+        animation-iteration-count: infinite;
       }
 
       color: ghostwhite;
       background-color: darkslategray;
-      padding: .75em;
+      padding: 1em;
       display: block;
-      font-size: 2em;
+      font-size: 1.5em;
       border: 2px solid ghostwhite;
       border-radius: .75em;
       width: 100%;
