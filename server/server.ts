@@ -4,6 +4,9 @@ const rpio = __non_webpack_require__('rpio');
 const express = __non_webpack_require__('express');
 
 const app = express();
+app.use('/dist/web', express.static('dist/web'));
+app.use(express.json());
+
 const PORT = 8080;
 
 let doorOpen: boolean[] = [false, false];
@@ -68,6 +71,7 @@ app.get('/status/:doorId', (req: Request, res: Response) => {
 app.post('/door/:doorId', (req: Request, res: Response) => {
   // Simulate a button press
   const doorId: number = parseInt(req.params["doorId"]) || 0;
+  const timeout: number = req.body?.force ? 10000 : 500;
   rpio.write(doorPins[doorId], rpio.HIGH);
   console.log(`door signal on for ${doorId}`);
   setTimeout(() => {
@@ -75,7 +79,7 @@ app.post('/door/:doorId', (req: Request, res: Response) => {
     console.log(`door signal off for ${doorId}`);
     doorOpen[doorId] = !doorOpen[doorId];
     res.send('done');
-  }, 500);
+  }, timeout);
 });
 
 app.post('/light/:doorId', (req: Request, res: Response) => {
@@ -94,5 +98,5 @@ app.post('/light/:doorId', (req: Request, res: Response) => {
 
 
 app.listen(PORT);
-app.use('/dist/web', express.static('dist/web'))
+
 console.log('Running on http://localhost:' + PORT);

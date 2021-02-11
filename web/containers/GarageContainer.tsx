@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import DoorInfo from '../components/DoorInfo'
 import GarageState from '../components/GarageState'
+import ForceDoorButton from '../components/ForceDoorButton'
 import GarageDoorButton from '../components/GarageDoorButton'
 import GarageLightButton from '../components/GarageLightButton'
 
@@ -39,8 +40,9 @@ class GarageContainer<DoorConfig> extends React.Component {
       })
   }
 
-  sendDoor() {
-    axios.post(`/door/${this.state.doorId}`)
+  sendDoor(force:boolean=false) {
+    const body = JSON.stringify({"force": force});
+    axios.post(`/door/${this.state.doorId}`, body, {headers: {"Content-Type": "application/json"}})
       .then(res => {
         console.log(res);
         this.updateStatus();
@@ -104,6 +106,9 @@ class GarageContainer<DoorConfig> extends React.Component {
           buttonText={'LIGHT'}
           sendLight={this.sendLight} />
         <GarageState getGarageDoorStatus={this.getGarageDoorStatus} getGarageLightStatus={this.getGarageLightStatus} />
+        <ForceDoorButton
+          buttonText={'FORCE'}
+          sendDoor={this.sendDoor} />
       </div>
     )
   }
