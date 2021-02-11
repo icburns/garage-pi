@@ -4,7 +4,6 @@ import axios from 'axios'
 
 import DoorInfo from '../components/DoorInfo'
 import GarageState from '../components/GarageState'
-import ForceDoorButton from '../components/ForceDoorButton'
 import GarageDoorButton from '../components/GarageDoorButton'
 import GarageLightButton from '../components/GarageLightButton'
 
@@ -42,6 +41,11 @@ class GarageContainer<DoorConfig> extends React.Component {
 
   sendDoor(force:boolean=false) {
     const body = JSON.stringify({"force": force});
+    if (force) {
+      const pendingDoorState = this.state;
+      pendingDoorState.garageState.doorOpen = null;
+      this.setState(pendingDoorState);
+    }
     axios.post(`/door/${this.state.doorId}`, body, {headers: {"Content-Type": "application/json"}})
       .then(res => {
         console.log(res);
@@ -67,7 +71,7 @@ class GarageContainer<DoorConfig> extends React.Component {
     console.log("get door state");
     console.log(this.state.garageState.doorOpen);
     if (!this.state.garageState) {
-      return 'UNKNOWN';
+      return '....';
     }
 
     if (this.state.garageState.doorOpen === true) {
@@ -75,7 +79,7 @@ class GarageContainer<DoorConfig> extends React.Component {
     } else if (this.state.garageState.doorOpen === false) {
       return 'CLOSED';
     } else {
-      return 'UNKNOWN';
+      return '....';
     }
   }
 
@@ -101,14 +105,19 @@ class GarageContainer<DoorConfig> extends React.Component {
         <DoorInfo doorInfo={this.props} />
         <GarageDoorButton
           buttonText={'DOOR'}
+          status={this.state.garageState.doorOpen}
+          force={false}
           sendDoor={this.sendDoor} />
         <GarageLightButton
           buttonText={'LIGHT'}
+          status={this.state.garageState.lightOn}
           sendLight={this.sendLight} />
-        <GarageState getGarageDoorStatus={this.getGarageDoorStatus} getGarageLightStatus={this.getGarageLightStatus} />
-        <ForceDoorButton
+        <GarageDoorButton
           buttonText={'FORCE'}
+          status={this.state.garageState.doorOpen}
+          force={true}
           sendDoor={this.sendDoor} />
+        <GarageState getGarageDoorStatus={this.getGarageDoorStatus} getGarageLightStatus={this.getGarageLightStatus} />
       </div>
     )
   }
