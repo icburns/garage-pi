@@ -18,13 +18,6 @@ body {
     .doorInfo {
       font-size: 1.5em;
     }
-
-    .state {
-      p {
-        font-size: 1em;
-        margin: 0.5em 0;
-      }
-    }
   
     .garageContainer {
       padding: .5em;
@@ -35,7 +28,6 @@ body {
     }
   
     
-   
     button {
       @keyframes pending {
         from {
@@ -62,9 +54,14 @@ body {
         animation-iteration-count: infinite;
       }
 
+      &:disabled {
+        background-color: lightslategray;
+        border-color:lightsteelblue;
+      }
+
       color: ghostwhite;
       background-color: darkslategray;
-      padding: 1em;
+      padding: .5em 1em .5em 1em;
       display: block;
       font-size: 1.5em;
       border: 2px solid ghostwhite;
@@ -74,6 +71,11 @@ body {
       margin-top: .5em;
       cursor: pointer;
       outline: none;
+
+      p {
+        font-size: .5em;
+        margin: 0;
+      }
     }
   
   }
