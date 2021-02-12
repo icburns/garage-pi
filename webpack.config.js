@@ -1,6 +1,6 @@
-const path = require('path');
+const path = require('path')
 
-module.exports = 
+module.exports =
 [
   {
     name: 'server',
@@ -11,21 +11,18 @@ module.exports =
         {
           test: /\.ts$/,
           use: 'ts-loader',
-          exclude: /node_modules/,
-        },
-      ],
+          exclude: /node_modules/
+        }
+      ]
     },
     resolve: {
-      extensions: ['.ts', '.js'],
+      extensions: ['.ts', '.js']
     },
-      output: {
-      path: __dirname + '/dist/server',
+    output: {
+      path: path.join(__dirname, '/dist/server'),
       filename: 'server.js'
     },
-    mode: process.env.NODE_ENV || 'development',
-    externals: {
-      // rpio: 'rpio'
-    }
+    mode: process.env.NODE_ENV || 'development'
   },
   {
     name: 'web',
@@ -36,19 +33,19 @@ module.exports =
         {
           test: /\.tsx?$/,
           use: 'ts-loader',
-          exclude: /node_modules/,
+          exclude: /node_modules/
         },
         {
           test: /\.scss$/,
           use: ['style-loader', 'css-loader', 'sass-loader']
-        },
-      ],
+        }
+      ]
     },
     resolve: {
-      extensions: ['.tsx', '.ts', '.jsx', '.js'],
+      extensions: ['.tsx', '.ts', '.jsx', '.js']
     },
     output: {
-      path: __dirname + '/dist/web',
+      path: path.join(__dirname, '/dist/web'),
       filename: 'bundle.js'
     },
     mode: process.env.NODE_ENV || 'development'
