@@ -71,7 +71,7 @@ app.get('/status/:doorId', (req: Request, res: Response) => {
 app.post('/door/:doorId', (req: Request, res: Response) => {
   // Simulate a button press
   const doorId: number = parseInt(req.params["doorId"]) || 0;
-  const timeout: number = req.body?.force ? 10000 : 500;
+  const timeout: number = req.body?.force ? 15000 : 500;
   rpio.write(doorPins[doorId], rpio.HIGH);
   console.log(`door signal on for ${doorId}`);
   setTimeout(() => {

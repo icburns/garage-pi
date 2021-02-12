@@ -16,7 +16,7 @@ class GarageContainer<DoorConfig> extends React.Component {
     this.props = props;
     console.log(props);
 
-    this.state = { garageState: {}, doorId: props.doorInfo.doorId, doorName: props.doorInfo.name };
+    this.state = { garageState: {}, doorId: props.doorInfo.doorId, doorName: props.doorInfo.name, force:props.doorInfo.forceDoor, light: props.doorInfo.light };
 
     this.updateStatus = this.updateStatus.bind(this);
     this.sendDoor = this.sendDoor.bind(this);
@@ -106,18 +106,13 @@ class GarageContainer<DoorConfig> extends React.Component {
         <GarageDoorButton
           buttonText={'DOOR'}
           status={this.state.garageState.doorOpen}
-          force={false}
+          force={this.state.force}
           sendDoor={this.sendDoor} />
         <GarageLightButton
+          disabled={!this.state.light}
           buttonText={'LIGHT'}
           status={this.state.garageState.lightOn}
           sendLight={this.sendLight} />
-        <GarageDoorButton
-          buttonText={'FORCE'}
-          status={this.state.garageState.doorOpen}
-          force={true}
-          sendDoor={this.sendDoor} />
-        <GarageState getGarageDoorStatus={this.getGarageDoorStatus} getGarageLightStatus={this.getGarageLightStatus} />
       </div>
     )
   }

@@ -1,15 +1,19 @@
 import React from 'react';
 import { DoorConfig } from './models/DoorConfig';
 import GarageContainer from './containers/GarageContainer';
-
+ 
 const doorConfig: DoorConfig[] = [
   {
     doorId: 0,
-    name:  "XING"
+    name:  "XING",
+    forceDoor: false,
+    light: true
   },
   {
     doorId: 1,
-    name:  "BU XING"
+    name:  "BU XING",
+    forceDoor: true,
+    light: false
   }
 ];
 
