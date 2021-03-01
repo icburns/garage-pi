@@ -6,14 +6,14 @@ const doorConfig: DoorConfig[] = [
   {
     doorId: 0,
     name: 'XING',
-    forceDoor: false,
-    light: true
+    forceDoor: true,
+    light: false
   },
   {
     doorId: 1,
     name: 'BU XING',
-    forceDoor: true,
-    light: false
+    forceDoor: false,
+    light: true
   }
 ]
 
