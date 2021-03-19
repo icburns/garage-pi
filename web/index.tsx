@@ -5,8 +5,8 @@ import GarageContainer from './containers/GarageContainer'
 const doorConfig: DoorConfig[] = [
   {
     doorId: 0,
-    name: 'XING',
-    forceDoor: true,
+    name: 'LEFT FLIPPER',
+    forceDoor: false,
     light: false
   },
   {
